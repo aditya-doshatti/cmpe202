@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 
 public class GumballMachine {
  
@@ -6,24 +6,40 @@ public class GumballMachine {
 	State noQuarterState;
 	State hasQuarterState;
 	State soldState;
+	State invalidCoinState;
  
 	State state = soldOutState;
 	int count = 0;
+	int cost = 0;
+	int moneyCollected = 0;
+	ArrayList<Integer> accepted_coins;
  
-	public GumballMachine(int numberGumballs) {
+	public GumballMachine(int numberGumballs, int costOfGumball, ArrayList<Integer> accepted_coins) {
 		soldOutState = new SoldOutState(this);
-		noQuarterState = new NoQuarterState(this);
+		noQuarterState = new NotEnoughMoneyState(this);
 		hasQuarterState = new HasQuarterState(this);
 		soldState = new SoldState(this);
+		invalidCoinState = new NotValidCoinState(this);
 
+		this.cost = costOfGumball;
 		this.count = numberGumballs;
+		this.accepted_coins = accepted_coins;
  		if (numberGumballs > 0) {
 			state = noQuarterState;
 		} 
 	}
- 
-	public void insertQuarter() {
-		state.insertQuarter();
+
+	public void insertCoin(int value) {
+		if (state == invalidCoinState) {
+			System.out.println("Complete earlier transaction first, eject the invalid coin");
+		}
+		else {
+			this.moneyCollected += value;
+			if (!this.accepted_coins.contains(value)) {
+				state = invalidCoinState;
+			}		
+			state.insertCoin(value);
+		}
 	}
  
 	public void ejectQuarter() {
@@ -43,11 +59,16 @@ public class GumballMachine {
 		System.out.println("A gumball comes rolling out the slot...");
 		if (count != 0) {
 			count = count - 1;
+			moneyCollected -= cost;
 		}
 	}
  
 	int getCount() {
 		return count;
+	}
+	
+	int getMoneyCollected() {
+		return moneyCollected;
 	}
  
 	void refill(int count) {
@@ -73,6 +94,10 @@ public class GumballMachine {
 
     public State getSoldState() {
         return soldState;
+    }
+    
+    public State getNotValidCoinState() {
+        return invalidCoinState;
     }
  
 	public String toString() {
