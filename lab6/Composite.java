@@ -10,12 +10,14 @@ public class Composite implements Component {
         description = d ;
     }
 
-    public void printDescription() {
+    public String printDescription() {
         System.out.println( description );
+        String output = "";
         for (Component obj  : components)
         {
-            obj.printDescription();
+            output += "\n" + obj.printDescription();
         }
+        return output;
     }
 
     public void addItem(Component c) {

@@ -6,9 +6,8 @@ public class Sauce implements Component{
 		name = n;
 	}
 	@Override
-	public void printDescription() {
-		System.out.println("----> |" + name + "|<");
-		// currentStratergy.print()
+	public String printDescription() {
+		return name;
 		
 	}
 

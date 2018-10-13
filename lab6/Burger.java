@@ -8,10 +8,12 @@ public class Burger extends Composite
         }
     }
         
-    public void printDescription() {
+    public String printDescription() {
+    	String op = "";
         for (Component obj  : components)
         {
-            obj.printDescription();
+            op += obj.printDescription() + "\n";
         }
+        return op;
     }
 }

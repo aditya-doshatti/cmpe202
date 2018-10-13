@@ -18,13 +18,14 @@ public class Topping implements Component{
 			topBun = false;
 		}
 	}
+	
+	boolean isTopTopping() {
+		return topBun;
+	}
+	
 	@Override
-	public void printDescription() {
-		if (topBun)
-			System.out.println(name);
-		else
-			System.out.println("-> |" + name);
-		//currentStratergy.print()
+	public String printDescription() {
+		return name;
 		
 	}
 

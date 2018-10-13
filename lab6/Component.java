@@ -1,6 +1,6 @@
 public interface Component {
 
-     void printDescription() ;
+     String printDescription() ;
      void addItem(Component c);
      void removeItem(Component c);
 }
