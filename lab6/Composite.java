@@ -27,4 +27,10 @@ public class Composite implements Component {
     public void removeItem(Component c) {
         components.remove(c) ;
     }
+
+	@Override
+	public float getPrice() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

@@ -41,4 +41,10 @@ public class Topping implements Component{
 		
 	}
 
+	@Override
+	public float getPrice() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

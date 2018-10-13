@@ -21,5 +21,10 @@ public class Meat implements Component {
 		// TODO Auto-generated method stub
 
 	}
+	@Override
+	public float getPrice() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
